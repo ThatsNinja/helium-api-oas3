@@ -1,0 +1,106 @@
+openapi: 3.0.1
+info:
+  description: ""
+  version: "1.0.0"
+  title: ""
+paths:
+  /v1/hotspots:
+    get:
+      responses:
+        "200":
+          description: "OK"
+components:
+  schemas:
+    status:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          nullable: true
+    hotspot:
+      type: object
+      properties:
+        lng:
+          type: number
+        lat:
+          type: number
+        timestamp_added:
+          type: string
+        status:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: nullable
+            online:
+              type: string
+            listen_addrs:
+              type: string
+              format: nullable
+            height:
+              type: string
+              format: nullable
+        reward_scale:
+          type: string
+          format: nullable
+        payer:
+          type: string
+        owner:
+          type: string
+        nonce:
+          type: integer
+          format: int32
+        name:
+          type: string
+        mode:
+          type: string
+        location_hex:
+          type: string
+        location:
+          type: string
+        last_poc_challenge:
+          type: string
+          format: nullable
+        last_change_block:
+          type: integer
+          format: int32
+        geocode:
+          type: object
+          properties:
+            short_street:
+              type: string
+            short_state:
+              type: string
+            short_country:
+              type: string
+            short_city:
+              type: string
+            long_street:
+              type: string
+            long_state:
+              type: string
+            long_country:
+              type: string
+            long_city:
+              type: string
+            city_id:
+              type: string
+        gain:
+          type: integer
+          format: int32
+        elevation:
+          type: integer
+          format: int32
+        block_added:
+          type: integer
+          format: int32
+        block:
+          type: integer
+          format: int32
+        address:
+          type: string
+    data:
+      type: array
+      items:
+        $ref: '#/components/schemas/hotspot'
