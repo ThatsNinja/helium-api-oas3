@@ -18,6 +18,27 @@ components:
           type: string
           format: date-time
           nullable: true
+          maxLength: 32
+        online:
+          type: string
+          format: string
+          nullable: false
+          maxLength: 7
+          pattern: ^[online|offline]$
+        listen_addrs:
+          type: array
+          nullable: true
+          items:
+            type: string
+            pattern: ^(\/p2p\/[0-9A-Za-z]{51}\/p2p-circuit\/p2p\/[0-9A-Za-z]{51})|(\/ip4\/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\/tcp\/[0-9]{1,5})+$
+            maxLength: 256
+          maxItems: 100
+        height:
+          type: integer
+          nullable: true
+          format: nullable
+          maximum: 1000000000000000
+          minimum: 0
     hotspot:
       type: object
       properties:
@@ -29,18 +50,7 @@ components:
           type: string
         status:
           type: object
-          properties:
-            timestamp:
-              type: string
-              format: nullable
-            online:
-              type: string
-            listen_addrs:
-              type: string
-              format: nullable
-            height:
-              type: string
-              format: nullable
+          $ref: '#/components/schemas/status'
         reward_scale:
           type: string
           format: nullable
